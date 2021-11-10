@@ -20,7 +20,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v2
         with:
-          go-version: '1.17.0'
+          go-version: '1.17.1'
       - name: Run build 
         run: go build -trimpath -o goblob ; sha256sum goblob
       - name: Log into ghcr.io
