@@ -31,9 +31,9 @@ jobs:
           password: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       - name: Install Cosign
         uses: sigstore/cosign-installer@main
-      - name: Push blob
-        run: |
-          cosign upload blob -f goblob ghcr.io/lukehinds/bloboidc:${{ github.sha }}
+#       - name: Push blob
+#         run: |
+#           cosign upload blob -f goblob ghcr.io/lukehinds/bloboidc:${{ github.sha }}
       - name: Sign blob
         run: |
           cosign sign-blob goblob
