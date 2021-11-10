@@ -21,8 +21,8 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: '1.17.0'
-      - name: Run build
-        run: go build . -o goblob
+      - name: Run build 
+        run: go build -o goblob ; sha256sum goblob
       - name: Log into ghcr.io
         uses: docker/login-action@v1
         with:
@@ -36,4 +36,4 @@ jobs:
           cosign upload blob -f goblob ghcr.io/lukehinds/bloboidc:${{ github.sha }}
       - name: Sign blob
         run: |
-          cosign sign ghcr.io/lukehinds/bloboidc:${{ github.sha }}
+          cosign sign --force ghcr.io/lukehinds/bloboidc:${{ github.sha }}
