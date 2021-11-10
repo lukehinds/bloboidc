@@ -36,4 +36,4 @@ jobs:
           cosign upload blob -f goblob ghcr.io/lukehinds/bloboidc:${{ github.sha }}
       - name: Sign blob
         run: |
-          cosign sign --force ghcr.io/lukehinds/bloboidc:${{ github.sha }}
+          cosign sign-blob --force ghcr.io/lukehinds/bloboidc:${{ github.sha }}
