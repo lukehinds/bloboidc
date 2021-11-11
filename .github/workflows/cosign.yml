@@ -14,7 +14,7 @@ jobs:
       contents: read
     env:
       COSIGN_EXPERIMENTAL: "true"
-      SOURCE_DATE_EPOCH=: (git log -1 --pretty=%ct)
+      SOURCE_DATE_EPOCH=: git log -1 --pretty=%ct
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
