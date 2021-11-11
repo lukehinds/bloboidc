@@ -27,7 +27,7 @@ jobs:
           export SOURCE_DATE_EPOCH=`date -d 2000-01-01T12:00:00 +%s`
           # export SOURCE_DATE_EPOCH=$(git log -1 --pretty=%ct)
           echo "SOURCE_DATE_EPOCH=$SOURCE_DATE_EPOCH"
-          go build "-asmflags=all='-trimpath=`pwd`'" -o goblob
+          go build "-asmflags=all='-trimpath=`pwd`'" "-gcflags=all='-trimpath=`pwd`'" -ldflags=-buildid= -o goblob
           sha256sum goblob
       - name: Log into ghcr.io
         uses: docker/login-action@v1
