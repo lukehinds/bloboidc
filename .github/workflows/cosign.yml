@@ -24,9 +24,8 @@ jobs:
           go-version: '1.17.1'
       - name: Run build 
         run: |
-          go build -trimpath -o goblob
+          go build "-asmflags=all='-trimpath=`pwd`'" -o goblob
           sha256sum goblob
-          strings goblob |grep bloboidc
       - name: Log into ghcr.io
         uses: docker/login-action@v1
         with:
