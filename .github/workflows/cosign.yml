@@ -14,7 +14,6 @@ jobs:
       contents: read
     env:
       COSIGN_EXPERIMENTAL: "true"
-      SOURCE_DATE_EPOCH=: git log -1 --pretty=%ct
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -24,9 +23,10 @@ jobs:
           go-version: '1.17.1'
       - name: Run build 
         run: |
+          export SOURCE_DATE_EPOCH=$(git log -1 --pretty=%ct)
+          echo "SOURCE_DATE_EPOCH=$SOURCE_DATE_EPOCH"
           go build "-asmflags=all='-trimpath=`pwd`'" -o goblob
           sha256sum goblob
-          echo $SOURCE_DATE_EPOCH
       - name: Log into ghcr.io
         uses: docker/login-action@v1
         with:
