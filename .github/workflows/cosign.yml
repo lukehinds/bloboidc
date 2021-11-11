@@ -26,6 +26,7 @@ jobs:
         run: |
           go build "-asmflags=all='-trimpath=`pwd`'" -o goblob
           sha256sum goblob
+          echo $SOURCE_DATE_EPOCH
       - name: Log into ghcr.io
         uses: docker/login-action@v1
         with:
